@@ -6,12 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.athongkun.bean.T_MALL_PRODUCT;
-import com.athongkun.mapper.SpuMapper;
+import com.athongkun.dao.SpuDao;
 
 @Service
 public class SpuServiceImp implements SpuServiceInf {
 	@Autowired
-	SpuMapper spuMapper;
+	SpuDao spuMapper;
 
 	public int spu_publish(T_MALL_PRODUCT spu, List<String> images_name) {
 		// 将上传的第一张图片设置为头图

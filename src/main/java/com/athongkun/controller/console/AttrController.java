@@ -1,4 +1,4 @@
-package com.athongkun.controller;
+package com.athongkun.controller.console;
 
 import java.util.List;
 
@@ -39,14 +39,14 @@ public class AttrController {
 	@RequestMapping("goto_add_attr/{class_2_id}/{class_2_name}")
 	public String goto_add_attr(@PathVariable String class_2_id, @PathVariable String class_2_name) {
 
-		return "manager_add_attr";
+		return "jsp/admin/manager_add_attr";
 	}
 
 	@RequestMapping("goto_attr_publish/{success}")
 	public String goto_attr_publish(ModelMap map, @PathVariable String success) {
 
 		map.put("success", success);
-		return "manager_attr_publish";
+		return "jsp/admin/manager_attr_publish";
 	}
 
 	@ResponseBody

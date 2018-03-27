@@ -1,6 +1,6 @@
-package com.athongkun.mapper;
+package com.athongkun.dao;
 
-public interface TestMapper {
+public interface TestDao {
 
 	public int select_test();
 

@@ -10,13 +10,13 @@ import org.springframework.stereotype.Service;
 import com.athongkun.bean.OBJECT_T_MALL_SKU;
 import com.athongkun.bean.T_MALL_SKU_ATTR_VALUE;
 import com.athongkun.bean.T_MALL_VALUE;
-import com.athongkun.mapper.SearchMapper;
+import com.athongkun.dao.SearchDao;
 
 @Service
 public class SearchRedisServiceImp implements SearchRedisServiceInf {
 
 	@Autowired
-	SearchMapper searchMapper;
+	SearchDao searchMapper;
 
 	/***
 	 * 根据分类属性查询商品sku集合

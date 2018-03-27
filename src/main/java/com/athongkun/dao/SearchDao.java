@@ -1,4 +1,4 @@
-package com.athongkun.mapper;
+package com.athongkun.dao;
 
 import java.util.HashMap;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import com.athongkun.bean.OBJECT_T_MALL_SKU;
 import com.athongkun.bean.T_MALL_VALUE;
 
-public interface SearchMapper {
+public interface SearchDao {
 
 	List<T_MALL_VALUE> select_value_by_attr_id(int attr_id);
 

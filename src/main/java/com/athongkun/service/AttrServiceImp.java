@@ -7,13 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.athongkun.bean.OBJECT_T_MALL_ATTR;
-import com.athongkun.mapper.AttrMapper;
+import com.athongkun.dao.AttrDao;
 
 @Service
 public class AttrServiceImp implements AttrServiceInf {
 
 	@Autowired
-	AttrMapper attrMapper;
+	AttrDao attrMapper;
 
 	@Override
 	public List<OBJECT_T_MALL_ATTR> get_attr_list_by_class_2_id(int class_2_id) {

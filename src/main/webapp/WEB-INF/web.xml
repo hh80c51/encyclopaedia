@@ -9,13 +9,24 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <!-- 监听器 -->
+  <listener>
+      <listener-class>com.athongkun.web.listener.ServerStartupListener</listener-class>
+  </listener>
+  <filter>  
+      <filter-name>HiddenHttpMethodFilter</filter-name>  
+      <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>  
+  </filter>  
+  
+  <filter-mapping>  
+      <filter-name>HiddenHttpMethodFilter</filter-name>  
+      <servlet-name>springmvc</servlet-name>  
+  </filter-mapping>   
+  
   <context-param>
     <param-name>contextConfigLocation</param-name>
-    <param-value>classpath:applicationContext.xml</param-value>
+    <param-value>classpath:spring-context.xml</param-value>
   </context-param>
-  <listener>
-    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-  </listener>
   <filter>
     <filter-name>encodingFilter</filter-name>
     <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>

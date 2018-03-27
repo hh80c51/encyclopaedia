@@ -13,19 +13,12 @@
 
 
 	<!-- 1、包扫描 -->
-	<context:component-scan base-package="com.athongkun.controller"
-		use-default-filters="false">
-		<context:include-filter type="annotation"
-			expression="org.springframework.stereotype.Controller" />
-		<context:include-filter type="annotation"
-			expression="org.springframework.web.bind.annotation.ControllerAdvice" />
-	</context:component-scan>
-
-	<context:component-scan base-package="com.athongkun.service"
-		use-default-filters="false">
-		<context:include-filter type="annotation"
-			expression="org.springframework.stereotype.Service" />
-	</context:component-scan>
+    <context:component-scan base-package="com.athongkun.*" use-default-filters="false">
+        <!-- 
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+         -->
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
 
 	<!-- 2、视图解析器 -->
 	<bean

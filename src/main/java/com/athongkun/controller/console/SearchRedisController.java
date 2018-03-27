@@ -1,4 +1,4 @@
-package com.athongkun.controller;
+package com.athongkun.controller.console;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -101,6 +101,6 @@ public class SearchRedisController {
 	@RequestMapping("goto_search_redis")
 	public String goto_search_redis() {
 
-		return "manager_search_redis";
+		return "jsp/admin/manager_search_redis";
 	}
 }

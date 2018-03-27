@@ -1,4 +1,4 @@
-package com.athongkun.mapper;
+package com.athongkun.dao;
 
 import java.util.HashMap;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import com.athongkun.bean.T_MALL_PRODUCT;
 import com.athongkun.bean.T_MALL_SKU;
 
-public interface SkuMapper {
+public interface SkuDao {
 
 	List<T_MALL_PRODUCT> select_spu_by_ppid_class2id(HashMap<String, Object> hashMap);
 

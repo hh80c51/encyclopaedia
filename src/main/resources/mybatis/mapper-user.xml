@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.athongkun.dao.UserDao">
+
+    <select id="queryPermissionsByUserid" resultType="permission">
+        select
+            *
+        from t_permission
+        where id in (
+            select
+                permissionid
+            from t_role_permission
+            where roleid in (
+                select
+                   roleid
+                from t_user_role
+                where userid = #{userid}
+            )
+        )
+    </select>
+
+    <select id="queryRolesByUserid" resultType="int">
+        select
+            roleid
+        from t_user_role
+        where userid = #{userid}
+    </select>
+
+    <select id="queryUserById" resultType="user">
+        select * from t_user where id = #{id}
+    </select>
+
+    <select id="queryUsers" resultType="user">
+        select
+            *
+        from t_user
+        <where>
+            <if test="querytext != null">
+            and loginacct like concat('%', #{querytext}, '%')
+            </if>
+        </where>
+        order by createtime desc
+        limit #{start}, #{size}
+    </select>
+    
+    <select id="queryUserCount" resultType="int">
+        select
+            count(*)
+        from t_user
+        <where>
+            <if test="querytext != null">
+            and loginacct like concat('%', #{querytext}, '%')
+            </if>
+        </where>
+    </select>
+
+    <select id="queryAllMenus" resultType="menu">
+        select * from t_menu
+    </select>
+
+    <select id="queryParentMenu" resultType="menu">
+        select * from t_menu where pid = #{pid}
+    </select>
+
+    <select id="queryChildMenus" resultType="menu">
+        select * from t_menu where pid = #{pid}
+    </select>
+
+    <select id="queryUserByLogin" resultType="user">
+        select
+            *
+        from t_user
+        where loginacct = #{loginacct} and userpswd = #{userpswd}
+    </select>
+    
+    <insert id="insertUser">
+        insert into t_user (
+            loginacct, userpswd, username, createtime
+        ) values (
+            #{loginacct}, #{userpswd}, #{username}, #{createtime}
+        )
+    </insert>
+    
+    <insert id="insertUserRole">
+        insert into t_user_role (
+            userid, roleid
+        ) values (
+            #{userid}, #{roleid}
+        )
+    </insert>
+    
+    <update id="updateUser">
+        update t_user
+        set
+            loginacct = #{loginacct},
+            username = #{username}
+        where id = #{id}
+    </update>
+    
+    <delete id="deleteUserById">
+        delete from t_user where id = #{id}
+    </delete>
+    
+    <delete id="deleteUsersByIds">
+        delete from t_user where id in 
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+        #{id}
+        </foreach>
+    </delete>
+    
+    <delete id="deleteUserRoles">
+        delete from t_user_role
+        where userid = #{userid} and roleid in
+        <foreach collection="roleids" item="roleid" open="(" close=")" separator=",">
+        #{roleid}
+        </foreach>
+    </delete>
+
+    <!--
+    <select id="queryRolePermissionByUser" resultType="permission">
+        select * from t_permission
+        where id in (
+	        select
+	            rp.permissionid
+	        from t_role_permission rp
+	        join t_user_role ur on ur.roleid = rp.roleid and ur.userid = #{id}
+        ) and id != pid
+        order by seqno
+    </select>
+
+    
+    <insert id="insertUser">
+        insert into t_user (
+            name,userpswd,sex,email,loginacct
+        ) values (
+            #{name},#{userpswd},#{sex},#{email},#{loginacct}
+        )
+        <selectKey keyProperty="id" resultType="int">
+            select @@identity as id
+        </selectKey>
+    </insert>
+    
+    <update id="updateUser">
+        update t_user
+        set name = #{name}, sex = #{sex}, email = #{email}, loginacct = #{loginacct}
+        where id = #{id}
+    </update>
+    <delete id="deleteUserRole">
+        delete from t_user_role where userid = #{userid} and roleid = #{roleid}
+    </delete>
+    -->
+</mapper>

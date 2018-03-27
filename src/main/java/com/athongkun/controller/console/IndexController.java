@@ -1,7 +1,9 @@
-package com.athongkun.controller;
+package com.athongkun.controller.console;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,7 +32,7 @@ public class IndexController {
 		map.put("title", title);
 		map.put("url", url);
 		// int testDb = indexservice.testDb();
-		return "manager_index";
+		return "jsp/admin/manager_index";
 	}
-
+	
 }

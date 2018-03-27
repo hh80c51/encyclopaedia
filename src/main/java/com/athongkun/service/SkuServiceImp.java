@@ -9,13 +9,13 @@ import org.springframework.stereotype.Service;
 import com.athongkun.bean.T_MALL_PRODUCT;
 import com.athongkun.bean.T_MALL_SKU;
 import com.athongkun.bean.T_MALL_SKU_ATTR_VALUE;
-import com.athongkun.mapper.SkuMapper;
+import com.athongkun.dao.SkuDao;
 
 @Service
 public class SkuServiceImp implements SkuServiceInf {
 
 	@Autowired
-	SkuMapper skuMapper;
+	SkuDao skuMapper;
 
 	public List<T_MALL_PRODUCT> get_spu_by_ppid_class2id(int class_1_id, int class_2_id, int pp_id) {
 		HashMap<String, Object> hashMap = new HashMap<String, Object>();

@@ -1,4 +1,4 @@
-package com.athongkun.controller;
+package com.athongkun.controller.console;
 
 import java.util.List;
 
@@ -36,7 +36,7 @@ public class SpuController {
 	@RequestMapping("goto_spu_publish/{success}")
 	public String goto_spu_publish(@PathVariable String success, ModelMap map) {
 		map.put("success", success);
-		return "manager_spu_publish";
+		return "jsp/admin/manager_spu_publish";
 	}
 
 }

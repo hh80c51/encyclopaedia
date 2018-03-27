@@ -1,4 +1,4 @@
-package com.athongkun.controller;
+package com.athongkun.controller.console;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -52,7 +52,7 @@ public class SkuController {
 		// 根据二级分类id查询对应的分类属性集合
 		List<OBJECT_T_MALL_ATTR> list_attr_value = attrServiceImp.get_attr_list_by_class_2_id(class_2_id);
 		map.put("list_attr_value", list_attr_value);
-		return "manager_sku_publish_inner";
+		return "jsp/admin/manager_sku_publish_inner";
 	}
 
 	@ResponseBody
@@ -65,7 +65,7 @@ public class SkuController {
 	@RequestMapping("goto_sku_publish/{success}")
 	public String goto_sku_publish(@PathVariable String success) {
 		// int testDb = indexservice.testDb();
-		return "manager_sku_publish";
+		return "jsp/admin/manager_sku_publish";
 	}
 
 }

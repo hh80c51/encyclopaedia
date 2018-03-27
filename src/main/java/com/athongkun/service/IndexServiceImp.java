@@ -3,13 +3,13 @@ package com.athongkun.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.athongkun.mapper.TestMapper;
+import com.athongkun.dao.TestDao;
 
 @Service
 public class IndexServiceImp implements IndexServiceInf {
 
 	@Autowired
-	TestMapper testMapper;
+	TestDao testMapper;
 
 	@Override
 	public int testDb() {
