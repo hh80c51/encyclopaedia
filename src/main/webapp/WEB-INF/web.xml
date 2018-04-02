@@ -54,6 +54,6 @@
   <servlet-mapping>
     <servlet-name>springmvc</servlet-name>
     <url-pattern>*.do</url-pattern>
-    <url-pattern>*.html</url-pattern>
+    <url-pattern>*.htm</url-pattern>
   </servlet-mapping>
 </web-app>

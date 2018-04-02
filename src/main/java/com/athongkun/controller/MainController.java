@@ -127,6 +127,9 @@ public class MainController {
 	public String main( HttpSession session ) {
 		// 查询当前登录用户的所有分配的许可信息（菜单）
 		User loginUser = (User)session.getAttribute(Const.LOGIN_USER);
+		if(null == loginUser) {
+			return "redirect:/login.do";
+		}
 		List<Permission> userPermissions = userService.queryPermissionsByUserid(loginUser.getId());
 		
 		// 整合许可数据的父子关系
