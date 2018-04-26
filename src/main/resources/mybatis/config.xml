@@ -6,5 +6,6 @@
         <typeAlias type="com.athongkun.bean.Menu" alias="menu"/>
         <typeAlias type="com.athongkun.bean.Role" alias="role"/>
         <typeAlias type="com.athongkun.bean.Permission" alias="permission"/>
+        <typeAlias type="com.athongkun.bean.Cert" alias="cert"/>
     </typeAliases>
 </configuration>
