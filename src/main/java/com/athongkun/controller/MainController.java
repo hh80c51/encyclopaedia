@@ -106,11 +106,16 @@ public class MainController {
 			
 			Set<String> userAuthURLSet = new HashSet<String>();
 			
-			for ( Permission permission : userPermissions ) {
-				if ( StringUtil.isNotEmpty(permission.getUrl()) ) {
+			userPermissions.forEach(permission -> {
+				if(StringUtil.isNotEmpty(permission.getUrl())) {
 					userAuthURLSet.add(permission.getUrl());
 				}
-			}
+			});
+//			for ( Permission permission : userPermissions ) {
+//				if ( StringUtil.isNotEmpty(permission.getUrl()) ) {
+//					userAuthURLSet.add(permission.getUrl());
+//				}
+//			}
 			session.setAttribute("authURL", userAuthURLSet);
 		}
 		return resultMap;

@@ -107,13 +107,20 @@ public class UserController extends BaseController {
 		// 获取当前用户未分配的角色列表
 		List<Role> unassignList = new ArrayList<Role>();
 		
-		for ( Role role : roles ) {
-			if ( roleids.contains(role.getId()) ) {
+		roles.forEach(role -> {
+			if(roleids.contains(role.getId())){
 				assignList.add(role);
 			} else {
 				unassignList.add(role);
 			}
-		}
+		});
+//		for ( Role role : roles ) {
+//			if ( roleids.contains(role.getId()) ) {
+//				assignList.add(role);
+//			} else {
+//				unassignList.add(role);
+//			}
+//		}
 		
 		model.addAttribute("assignList", assignList);
 		model.addAttribute("unassignList", unassignList);

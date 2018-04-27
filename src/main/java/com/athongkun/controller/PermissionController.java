@@ -104,11 +104,12 @@ public class PermissionController extends BaseController {
 			Map<Integer, Permission> permissionMap = new HashMap<Integer, Permission>();
 			List<Permission> roots = new ArrayList<Permission>();
 			
-			for ( Permission p : permissions ) {
-				permissionMap.put(p.getId(), p);
-			}
+			permissions.forEach(p -> permissionMap.put(p.getId(), p));
+//			for ( Permission p : permissions ) {
+//				permissionMap.put(p.getId(), p);
+//			}
 			
-			for ( Permission p : permissions ) {
+			permissions.forEach(p -> {
 				Permission childPermission = p;
 				if ( p.getPid() == 0 ) {
 					roots.add(p);
@@ -116,7 +117,17 @@ public class PermissionController extends BaseController {
 					Permission parentPermission = permissionMap.get(childPermission.getPid());
 					parentPermission.getChildren().add(childPermission);
 				}
-			}
+			});
+			
+//			for ( Permission p : permissions ) {
+//				Permission childPermission = p;
+//				if ( p.getPid() == 0 ) {
+//					roots.add(p);
+//				} else {
+//					Permission parentPermission = permissionMap.get(childPermission.getPid());
+//					parentPermission.getChildren().add(childPermission);
+//				}
+//			}
 			param("nodes", roots);
 			success();
 		} catch ( Exception e ) {
