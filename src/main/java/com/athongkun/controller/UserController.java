@@ -231,7 +231,7 @@ public class UserController extends BaseController {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		
 		try {
-			user.setUserpswd(MD5Util.digest("123123"));
+			user.setUserpswd(MD5Util.digest("123123", (s) -> "123123"));
 			// 将时间转换为特定格式的字符串
 			//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			//user.setCreatetime(sdf.format(new Date()));

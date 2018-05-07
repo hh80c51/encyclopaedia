@@ -2,12 +2,14 @@ package com.athongkun.utils;
 
 import java.security.MessageDigest;
 
+import com.google.common.base.Function;
+
 public class MD5Util {
     public static String digest16(String inStr) {  
     	return digest(inStr, 16);
 	}
-    public static String digest(String inStr) {  
-    	return digest(inStr, 32);
+    public static String digest(String inStr, Function<String,String> fun) {  
+    	return fun.apply(digest(inStr, 32));
 	}  
     private static String digest(String inStr, int rang) {  
 	    MessageDigest md5 = null;  
@@ -48,6 +50,6 @@ public class MD5Util {
 
     public static void main(String args[]) {  
 	    String s = new String("admin");
-	    System.out.println(digest(s));
+	    System.out.println(digest(s,(a)->s));
 	}  
 }

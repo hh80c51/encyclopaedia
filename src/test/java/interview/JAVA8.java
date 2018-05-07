@@ -23,6 +23,7 @@ public class JAVA8 {
 	* @date 2018年4月26日下午4:20:01
 	*/
 	public static void LambdaTest1() {
+		//循环改成lambda表达式的写法
 //		Arrays.asList( "a", "b", "d" ).forEach( e -> System.out.println( e ) );
 //		// 也可以直接指定参数类型
 //		Arrays.asList( "a", "b", "d" ).forEach( (String e) -> System.out.println( e ) );
@@ -70,7 +71,7 @@ public class JAVA8 {
 //		LambdaTest1();
 //		functionalDefaultMethods.method();
 //		functionalDefaultMethods.defaultMethod();
-//		new OverridableImpl().notRequired();
+		new OverridableImpl().notRequired();
 		
 //		Function<Double, Double> sqrt = new Function<Double, Double>() {
 //		    public Double apply(Double input) {

@@ -79,7 +79,7 @@ public class MainController {
 		//AJAXResult result = new AJAXResult(); ==> {success:false,error:"xxxx"}
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		// ==> {}
-		formUser.setUserpswd(MD5Util.digest(formUser.getUserpswd()));
+		formUser.setUserpswd(MD5Util.digest(formUser.getUserpswd(), (s) -> s));
 		User dbUser = userService.queryUserByLogin(formUser);
 		if ( dbUser == null ) {
 			// 用户不存在的场合，跳转回登陆页面
