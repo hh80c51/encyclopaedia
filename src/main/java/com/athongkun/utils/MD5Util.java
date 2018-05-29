@@ -49,7 +49,7 @@ public class MD5Util {
 	}  
 
     public static void main(String args[]) {  
-	    String s = new String("admin");
-	    System.out.println(digest(s,(a)->s));
+	    String s = new String("a12345");
+	    System.out.println(digest(s,(a)->a));
 	}  
 }
