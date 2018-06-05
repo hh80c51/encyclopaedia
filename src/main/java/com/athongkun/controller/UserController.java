@@ -38,22 +38,43 @@ public class UserController extends BaseController {
 		return "jsp/user/test";
 	}
 	
+	/** 
+	* @Description: 账户列表 
+	* @Param: [] 
+	* @return: java.lang.String 
+	* @Author: HeHang
+	* @Date: 2018/6/5 
+	*/
 	@RequestMapping("/list")
 	public String list() {
-		return "jsp/user/list";
+		return "user/list";
 	}
 	
+	/** 
+	* @Description: 新增账户页面 
+	* @Param: [] 
+	* @return: java.lang.String 
+	* @Author: HeHang
+	* @Date: 2018/6/5 
+	*/
 	@RequestMapping("/add")
 	public String add() {
-		return "jsp/user/add";
+		return "user/add";
 	}
 	
+	/** 
+	* @Description: 修改账户页面
+	* @Param: [id, model] 
+	* @return: java.lang.String 
+	* @Author: HeHang
+	* @Date: 2018/6/5 
+	*/
 	@RequestMapping("/edit/{id}")
 	public String edit( @PathVariable("id")Integer id, Model model ) {
 		
 		User user = userService.queryUserById(id);
 		model.addAttribute("user", user);		
-		return "jsp/user/edit";
+		return "user/edit";
 	}
 	
 	
@@ -125,7 +146,7 @@ public class UserController extends BaseController {
 		model.addAttribute("assignList", assignList);
 		model.addAttribute("unassignList", unassignList);
 		
-		return "jsp/user/assign";
+		return "user/assign";
 	}
 	
 	@ResponseBody

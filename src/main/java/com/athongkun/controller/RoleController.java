@@ -25,12 +25,12 @@ public class RoleController extends BaseController {
 	
 	@RequestMapping("/list")
 	public String list() {
-		return "jsp/role/list";
+		return "role/list";
 	}
 	
 	@RequestMapping("/add")
 	public String add() {
-		return "jsp/role/add";
+		return "role/add";
 	}
 	
 	@RequestMapping("/edit/{id}")
@@ -39,7 +39,7 @@ public class RoleController extends BaseController {
 		Role role = roleService.queryById(id);
 		model.addAttribute("role", role);
 		
-		return "jsp/role/edit";
+		return "role/edit";
 	}
 	
 	@RequestMapping("/assign/{id}")
@@ -48,7 +48,7 @@ public class RoleController extends BaseController {
 		Role role = roleService.queryById(id);
 		model.addAttribute("role", role);
 		
-		return "jsp/role/assign";
+		return "role/assign";
 	}
 	
 	@ResponseBody

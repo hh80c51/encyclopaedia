@@ -27,7 +27,15 @@ import com.athongkun.utils.StringUtil;
 public class MainController {
 	
 	@Autowired
-	private UserService userService;	
+	private UserService userService;
+	
+	/** 
+	* @Description: 退出登录 
+	* @Param: [session] 
+	* @return: java.lang.String 
+	* @Author: HeHang
+	* @Date: 2018/6/5 
+	*/
 	@RequestMapping("/logout")
 	public String logout( HttpSession session ) {
 		// 删除当前的登陆用户信息
@@ -36,7 +44,14 @@ public class MainController {
 		// 跳转回到登陆页面
 		return "redirect:/";
 	}
-	
+
+	/** 
+	* @Description: 跳转到登录页面 
+	* @Param: [req] 
+	* @return: java.lang.String 
+	* @Author: HeHang
+	* @Date: 2018/6/5 
+	*/
 	@RequestMapping("/login")
 	public String login( HttpServletRequest req ) {
 		
@@ -65,12 +80,19 @@ public class MainController {
 		}
 		
 		if ( needLogin ) {
-			return "jsp/login";
+			return "login";
 		} else {
 			return "redirect:/main.htm";
 		}
 	}
 	
+	/** 
+	* @Description: 登录 
+	* @Param: [rememberme, formUser, resp, session] 
+	* @return: java.lang.Object 
+	* @Author: HeHang
+	* @Date: 2018/6/5 
+	*/
 	@ResponseBody
 	@RequestMapping("/dologin")
 	public Object dologin( String rememberme, User formUser, HttpServletResponse resp, HttpSession session ) {
@@ -121,13 +143,13 @@ public class MainController {
 		return resultMap;
 	}	
 	
-	/**
-	 * 如果在开发过程中，发现程序的逻辑调用之间有规律，
-	 * 并且方法逻辑调用的参数之间有规律，那么可以采用特殊的算法实现：递归
-	 * 递归中一定要包含跳出逻辑算法的操作
-	 * @param model
-	 * @return
-	 */
+	/** 
+	* @Description: 跳转到主页面
+	* @Param: [session] 
+	* @return: java.lang.String 
+	* @Author: HeHang
+	* @Date: 2018/6/5 
+	*/
 	@RequestMapping("/main")
 	public String main( HttpSession session ) {
 		// 查询当前登录用户的所有分配的许可信息（菜单）
@@ -159,7 +181,7 @@ public class MainController {
 		// 将数据保存到session中
 		session.setAttribute("root", root);
 		
-		return "jsp/main";
+		return "main";
 	}
 	
 }

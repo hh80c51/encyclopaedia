@@ -23,21 +23,42 @@ public class PermissionController extends BaseController {
 	@Autowired
 	private PermissionService permissionService;
 	
+	/** 
+	* @Description: 许可管理：菜单配置 
+	* @Param: [] 
+	* @return: java.lang.String 
+	* @Author: HeHang
+	* @Date: 2018/6/5 
+	*/
 	@RequestMapping("/list")
 	public String list() {
-		return "jsp/permission/list";
+		return "permission/list";
 	}
 	
+	/** 
+	* @Description: 增加菜单 
+	* @Param: [] 
+	* @return: java.lang.String 
+	* @Author: HeHang
+	* @Date: 2018/6/5 
+	*/
 	@RequestMapping("/add")
 	public String add() {
-		return "jsp/permission/add";
+		return "permission/add";
 	}
 	
+	/** 
+	* @Description: 修改菜单 
+	* @Param: [id, model] 
+	* @return: java.lang.String 
+	* @Author: HeHang
+	* @Date: 2018/6/5 
+	*/
 	@RequestMapping("/edit/{id}")
 	public String edit(@PathVariable("id")Integer id, Model model) {
 		Permission p = permissionService.queryById(id);
 		model.addAttribute("p", p);
-		return "jsp/permission/edit";
+		return "permission/edit";
 	}
 	
 	@ResponseBody
@@ -74,6 +95,13 @@ public class PermissionController extends BaseController {
 		return end();
 	}
 	
+	/** 
+	* @Description: 增加菜单
+	* @Param: [p]
+	* @return: java.lang.Object
+	* @Author: HeHang
+	* @Date: 2018/6/5
+	*/
 	@ResponseBody
 	@RequestMapping("/insert")
 	public Object insert( Permission p ) {
@@ -90,7 +118,7 @@ public class PermissionController extends BaseController {
 		
 		return end();
 	}
-	
+
 	@ResponseBody
 	@RequestMapping("/load")
 	public Object load() {

@@ -71,6 +71,6 @@ public class CerttypeController extends BaseController {
 		List<Map<String, Object>> datas = certService.queryAccttypeCerts();
 		model.addAttribute("datas", datas);
 		
-		return "jsp/certtype/list";
+		return "certtype/list";
 	}
 }
