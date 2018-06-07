@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.atguigu.cpes.dao.MemberDao">
+    <select id="queryCertsByMemberId" resultType="memberCert">
+        select
+        from t_member_cert a
+        join t_cert b on a.certid = b.id
+        WHERE a.memberid = #{memberid}
+    </select>
+    
+    <select id="queryMemberById" resultType="member">
+        SELECT
+          *
+          FROM t_member
+          WHERE id = #{id}
+    </select>
+
+    <select id="queryTicketByPiid" resultType="ticket">
+        SELECT 
+          *
+          FROM t_ticket
+          WHERE piid = #{piid}
+    </select>
+    
+    <select id="queryCertsByMemberAccttype" resultType="cert">
+        SELECT
+          *
+          FROM t_cert
+          WHERE id IN (
+            SELECT
+              certid
+            FROM t_accttype_cert
+            WHERE accttype = #{accttype}
+          )
+    </select>
+    
+    <select id="queryTicketByMemberid" resultType="ticket">
+        SELECT
+          *
+        FROM t_ticket
+        WHERE memberid = #{memberid}
+    </select>
+    
+    <select id="queryMemberByLogin" resultType="member">
+        SELECT
+          *
+        FROM t_member
+        WHERE loginacct = #{loginacct} AND userpswd = #{userpaswd}
+    </select>
+
+    <update id="updateAccttype">
+        update t_member
+        set accttype = #{accttype}
+        WHERE id = #{id}
+    </update>
+    <update id="updateEmail">
+        update t_member
+        set email = #{email}
+        where id = #{id}
+    </update>
+
+    <update id="updateBasicInfo">
+        update t_member
+        set realname = #{realname}, cardnum = #{cardnum}, tel = #{tel}
+        where id = #{id}
+    </update>
+
+    <update id="updateTicketInfo">
+        update t_ticket
+        set processstep = #{processstep}, piid = #{piid}, authcode = #{authcode}
+        where id = #{id}
+    </update>
+
+    <insert id="insertTicket">
+        insert into t_ticket (
+        memberid
+        ) values (
+        #{memberid}
+        )
+    </insert>
+
+    <insert id="insertMemberCerts">
+        insert into t_member_cert (
+        certid,memberid,iconpath
+        ) values (
+        #{certid},#{memberid},#{iconpath}
+        )
+    </insert>
+
+    <update id="updateTicketStep">
+        update t_ticket
+        set processstep = #{processstep}
+        where id = #{id}
+    </update>
+
+    <update id="updateAuthStatus">
+        update t_member
+        set status = '1'
+        where id = #{id}
+    </update>
+</mapper>

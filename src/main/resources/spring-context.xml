@@ -38,5 +38,5 @@
 	<bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.athongkun.dao"/>
 	</bean>
-	
+
 </beans>
