@@ -11,7 +11,7 @@ public class MyPropertiesUtils {
 		Properties properties = new Properties();
 
 		InputStream resourceAsStream = MyPropertiesUtils.class.getClassLoader()
-				.getResourceAsStream("imagePath.properties");
+				.getResourceAsStream("config/imagePath.properties");
 
 		try {
 			properties.load(resourceAsStream);
