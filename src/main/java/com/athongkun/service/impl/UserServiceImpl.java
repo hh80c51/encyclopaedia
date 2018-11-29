@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -117,5 +118,11 @@ public class UserServiceImpl implements UserService {
 
 	public List<Permission> queryPermissionsByUserid(Integer id) {
 		return userDao.queryPermissionsByUserid(id);
+	}
+
+	@Test
+	public void testSelectCount(){
+		List<Permission> permissionList  = this.queryPermissionsByUserid(1);
+		System.out.println(permissionList.size());
 	}
 }

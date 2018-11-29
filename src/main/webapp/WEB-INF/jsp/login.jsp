@@ -48,62 +48,125 @@
     <script src="${APP_PATH}/bootstrap/js/bootstrap.min.js"></script>
     <script src="${APP_PATH}/layer/layer.js"></script>
     <script type="text/javascript">
-    
-    $("#loginBtn").click(function(){
-    	
-    	var floginacct = $("#floginacct");
-    	if (floginacct.val() == "") {
-			layer.msg("登陆账号不能为空，请输入", {time:1500, icon:6, shift:6}, function(){
-				floginacct.focus();
-			});
-			return;
-    	}
-    	
-    	var fuserpswd = $("#fuserpswd");
-    	if (fuserpswd.val() == "") {
-			layer.msg("登陆密码不能为空，请输入", {time:1500, icon:5, shift:6}, function(){
-				fuserpswd.focus();
-			});
-			return;
-    	}
+        //回车提交
+        $(function(){
+            document.onkeydown = function(e) {
+                e = e || window.event;
+                if(e.keyCode == 13) {
+                    dologin();
+                }
+            }
+        });
 
-    	// document : DOM对象 ==> JQuery对象
-    	// $(document).ready();
-    	
-    	// JQuery对象[索引] ==》 DOM对象
-    	
-    	$.ajax({
-    		type : "POST",
-    		url  : "${APP_PATH}/dologin.do",
-    		data : {
-    			"loginacct" : $("#floginacct").val(),
-    			"userpswd" : $("#fuserpswd").val(),
-    			//"rememberme" : $("#frememberme")[0].checked ? "1" : "0"
-    			"rememberme" : $("#frememberme")[0].checked ? "0" : "0"
-    		},
-    		beforeSend : function() {
-    			//loadingIndex = layer.msg('用户登录处理中...', {icon: 16});
-    			loadingIndex = layer.load(2, {time: 10*1000});
-    			return true;
-    		},
-    		success : function(r) {
-    			layer.close(loadingIndex);
-    			if ( r.success ) {
-    				debugger;
-    				window.location.href = "${APP_PATH}/main.do";
-    			} else {
-    				if ( r.error ) {
-    					//alert(r.error);
-    					layer.msg(r.error, {time:1500, icon:5, shift:6}, function(){
-    						
-    					});
-    				} else {
-    					alert("用户登录失败");
-    				}
-    			}
-    		}
-    	});
+    $("#loginBtn").click(function(){
+        dologin();
     });
+
+    function dologin() {
+        var floginacct = $("#floginacct");
+        if (floginacct.val() == "") {
+            layer.msg("登陆账号不能为空，请输入", {time:1500, icon:5, shift:6}, function(){
+                floginacct.focus();
+            });
+            return;
+        }
+
+        var fuserpswd = $("#fuserpswd");
+        if (fuserpswd.val() == "") {
+            layer.msg("登陆密码不能为空，请输入", {time:1500, icon:5, shift:6}, function(){
+                fuserpswd.focus();
+            });
+            return;
+        }
+
+        // document : DOM对象 ==> JQuery对象
+        // $(document).ready();
+
+        // JQuery对象[索引] ==》 DOM对象
+
+        $.ajax({
+            type : "POST",
+            url  : "${APP_PATH}/dologin.do",
+            data : {
+                "loginacct" : $("#floginacct").val(),
+                "userpswd" : $("#fuserpswd").val(),
+                //"rememberme" : $("#frememberme")[0].checked ? "1" : "0"
+                "rememberme" : $("#frememberme")[0].checked ? "0" : "0"
+            },
+            beforeSend : function() {
+                //loadingIndex = layer.msg('用户登录处理中...', {icon: 16});
+                loadingIndex = layer.load(2, {time: 10*1000});
+                return true;
+            },
+            success : function(r) {
+                layer.close(loadingIndex);
+                if ( r.success ) {
+                    debugger;
+                    window.location.href = "${APP_PATH}/main.do";
+                } else {
+                    if ( r.error ) {
+                        //alert(r.error);
+                        layer.msg(r.error, {time:1500, icon:5, shift:6}, function(){
+
+                        });
+                    } else {
+                        alert("用户登录失败");
+                    }
+                }
+            }
+        });var floginacct = $("#floginacct");
+        if (floginacct.val() == "") {
+            layer.msg("登陆账号不能为空，请输入", {time:1500, icon:6, shift:6}, function(){
+                floginacct.focus();
+            });
+            return;
+        }
+
+        var fuserpswd = $("#fuserpswd");
+        if (fuserpswd.val() == "") {
+            layer.msg("登陆密码不能为空，请输入", {time:1500, icon:5, shift:6}, function(){
+                fuserpswd.focus();
+            });
+            return;
+        }
+
+        // document : DOM对象 ==> JQuery对象
+        // $(document).ready();
+
+        // JQuery对象[索引] ==》 DOM对象
+
+        $.ajax({
+            type : "POST",
+            url  : "${APP_PATH}/dologin.do",
+            data : {
+                "loginacct" : $("#floginacct").val(),
+                "userpswd" : $("#fuserpswd").val(),
+                //"rememberme" : $("#frememberme")[0].checked ? "1" : "0"
+                "rememberme" : $("#frememberme")[0].checked ? "0" : "0"
+            },
+            beforeSend : function() {
+                //loadingIndex = layer.msg('用户登录处理中...', {icon: 16});
+                loadingIndex = layer.load(2, {time: 10*1000});
+                return true;
+            },
+            success : function(r) {
+                layer.close(loadingIndex);
+                if ( r.success ) {
+                    debugger;
+                    window.location.href = "${APP_PATH}/main.do";
+                } else {
+                    if ( r.error ) {
+                        //alert(r.error);
+                        layer.msg(r.error, {time:1500, icon:5, shift:6}, function(){
+
+                        });
+                    } else {
+                        alert("用户登录失败");
+                    }
+                }
+            }
+        });
+    }
     </script>
   </body>
 </html>
