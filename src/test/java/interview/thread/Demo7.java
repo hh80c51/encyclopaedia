@@ -12,6 +12,8 @@ public class Demo7 {
         Thread.currentThread().interrupt();
         System.out.println("是否停止1？ = " + Thread.interrupted());
         System.out.println("是否停止1？ = " + Thread.interrupted());
+        System.out.println("是否停止1？ = " + Thread.interrupted());
+        System.out.println("是否停止1？ = " + Thread.interrupted());
         System.out.println("end!");
     }
 }
