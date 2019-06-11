@@ -1,15 +1,15 @@
 package eeCity;
 
+import net.sf.json.JSONException;
+import net.sf.json.JSONObject;
 import org.apache.commons.io.IOUtils;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
-import org.apache.http.NameValuePair;
+import org.apache.http.*;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPatch;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.entity.StringEntity;
@@ -18,6 +18,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
 import javax.net.ssl.SSLContext;
@@ -251,6 +252,46 @@ public class HttpUtils {
             }
         }
         return httpStr;
+    }
+
+    /**
+     * @Description: 发送httpPatch请求
+     * @param Authorization 认证
+     * @param param  参数
+     * @param url    请求地址
+     * @return: java.lang.String
+     * @Author: hanghe@hongkunjinfu.com
+     * @Date: 2019/5/15 10:15
+     */
+    @SuppressWarnings("unused")
+    public static String httpPatch(String Authorization, Map<String, Object> param, String url) {
+        JSONObject resultObj = null;
+        String strResult = "";
+        HttpClient httpClient = new DefaultHttpClient();
+        HttpPatch httpPatch = new HttpPatch(url);
+        httpPatch.setHeader("Content-type", "application/json");
+        httpPatch.setHeader("Charset", HTTP.UTF_8);
+        httpPatch.setHeader("Accept", "application/json");
+        httpPatch.setHeader("Accept-Charset", HTTP.UTF_8);
+        httpPatch.setHeader("Authorization", Authorization);
+        if (param == null) {
+            log("发送内容为空！");
+            return "";
+        }
+        try {
+            JSONObject jsonParam = JSONObject.fromObject(param);
+            StringEntity entity = new StringEntity(jsonParam.toString(), HTTP.UTF_8);
+            httpPatch.setEntity(entity);
+            HttpResponse response = httpClient.execute(httpPatch);
+            int statusCode = response.getStatusLine().getStatusCode();
+            log("请求响应返回状态："+statusCode);
+            strResult = EntityUtils.toString(response.getEntity());
+
+        } catch (ParseException | JSONException | IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return strResult;
     }
 
     /**
